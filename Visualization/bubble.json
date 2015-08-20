@@ -1,0 +1,108 @@
+{
+ "name": "bubble",
+ "children": [
+  {
+   "name": "metadata",
+   "children": [
+    {
+     "name": "responseHeader",
+     "children": [
+      {"name": "NOAA", "size": 1200},
+      {"name": "CALIFORNIA_LAJOLLA", "size": 2500},
+      {"name": "CALIFORNIA_SANTACRUZ", "size": 1200},
+      {"name": "ALASKA_KODIAK", "size": 743}
+     ]
+    },
+    {
+     "name": "graph",
+     "children": [
+      {"name": "Nuisance flooding", "size": 2000},
+      {"name": "PolarRegions", "size": 3200},
+      {"name": "rise", "size": 1500},
+      {"name": "Links", "size": 2000},
+      {"name": "RESEARCH", "size": 3416}
+     ]
+    },
+    {
+     "name": "optimization",
+     "children": [
+      {"name": "stylesheet", "size": 3000},
+{"name": "text/css", "size": 2047}
+     ]
+    }
+   ]
+  },
+   {
+   "name": "data",
+   "children": [
+    {
+     "name": "converters",
+     "children": [
+      {"name": "MainContent", "size": 721},
+      {"name": "BeringClimate", "size": 2500},
+      {"name": "Flood", "size": 3000},
+      {"name": "Spring", "size": 1314},
+      {"name": "Oceanographic", "size": 2220}
+     ]
+    },
+    {"name": "Environmental", "size": 1759},
+    {"name": "Atmospheric", "size": 2165},
+    {"name": "Satellite", "size": 586},
+    {"name": "Marine", "size": 3331},
+    {"name": "fisheries", "size": 772},
+    {"name": "biology", "size": 3322}
+   ]
+  },
+  {
+   "name": "display",
+   "children": [
+    {"name": "zoology", "size": 3200},
+    {"name": "ecology", "size": 1732},
+    {"name": "conservation", "size": 3623},
+    {"name": "aquaculture", "size": 2000}
+   ]
+  },
+  {
+   "name": "flex",
+   "children": [
+    {"name": "microbiology", "size": 2000}
+   ]
+  },
+  
+  {
+   "name": "query",
+   "children": [
+    {"name": "Scenery", "size": 1616},
+    {"name": "swimming", "size": 1027},
+    {"name": "dolphins", "size": 1300},
+    {"name": "Seals", "size": 891},
+    {"name": "Walruses", "size": 2893},
+    {"name": "Sea Lions", "size": 2000},
+    {"name": "community patterns", "size": 3677},
+    {"name": "Climate change", "size": 781},
+    {"name": "biomass", "size": 2300},
+    {"name": "growth", "size": 933},
+    {"name": "trophic levels", "size": 2400},
+    {"name": "ecosystems", "size": 3617},
+    {"name": "arctic marine", "size": 3240},
+    {"name": "sea-surface", "size": 2732},
+    {"name": "species", "size": 2039},
+    {"name": "greenhouse effect", "size": 1214},
+    {"name": "ice cover", "size": 3748},
+    {"name": "ocean heat", "size": 843},
+     {"name": "Gallery", "size": 843},
+    {"name": "hemisphere", "size": 1554},
+    {"name": "ocean", "size": 970},
+    {"name": "dynamics", "size": 3200},
+    {"name": "ice retreat", "size": 1594},
+    {"name": "Diversity", "size": 4130},
+    {"name": "Coastal", "size": 791},
+    {"name": "weather", "size": 1124},
+    {"name": "scientists", "size": 1876},
+    {"name": "tornadoes", "size": 1101}
+   ]
+  }
+  
+  
+ ]
+}

@@ -1,0 +1,95 @@
+Stats for AMD(seed 1) Crawl 1
+Statistics for CrawlDb: amd160/crawldb
+TOTAL urls:                      261917
+retry 0:        		 256634
+retry 1:      		         5283
+min score:       		 0.0
+avg score:       		 8.453059E-6
+max score:      	         1.017
+status 1 (db_unfetched):         220013
+status 2 (db_fetched):           30638
+status 3 (db_gone):              2042
+status 4 (db_redir_temp):        2074
+status 5 (db_redir_perm):        380
+status 7 (db_duplicate):         6770
+
+
+Stats for ADE (seed 2) Crawl 1
+Statistics for CrawlDb: AdeR10T2FC/crawldb
+TOTAL urls:			140177
+retry 0:			139769
+retry 1:			408
+min score:			0.0
+avg score:			1.6757385E-5
+max score:			1.0
+status 1 (db_unfetched):	104141
+status 2 (db_fetched):		31408
+status 3 (db_gone):		2231
+status 4 (db_redir_temp):	848
+status 5 (db_redir_perm):	1057
+status 7 (db_duplicate):	492
+
+
+Stats for ACADIS (seed 3) Crawl 1
+Statistics for CrawlDb: AoncadisR10/crawldb
+TOTAL urls:        		11777
+retry 0:       			11707
+retry 1:        		70
+min score:      		0.0
+avg score:       		1.7653052E-4
+max score:       		1.003
+status 1 (db_unfetched):        3766
+status 2 (db_fetched):          2739
+status 3 (db_gone):             1389
+status 4 (db_redir_temp):       3150
+status 5 (db_redir_perm):       733
+
+
+---------------------------------------------------------------------------------------------------------------------
+Stats for AMD(seed 1 with selenium)Crawl 2
+TOTAL urls:  			18054
+retry 0:    			17672
+retry 1:    			382
+min score:    			0.0
+avg score:    			1.237399E-4
+max score:    			1.017
+status 1 (db_unfetched):        14279
+status 2 (db_fetched):    	3253
+status 3 (db_gone):    		148
+status 4 (db_redir_temp):       92
+status 5 (db_redir_perm):       186
+status 7 (db_duplicate):        96
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+Stats for AMD (seed 1) Professor's data
+TOTAL urls:        		285105
+retry 0:        		282147
+retry 1:        		1623
+retry 2:        		489
+retry 3:        		846
+min score:        		0.0
+avg score:        		7.670858E-6
+max score:        		1.011
+status 1 (db_unfetched):        243037
+status 2 (db_fetched):          29685
+status 3 (db_gone):        	2345
+status 4 (db_redir_temp):       2578
+status 5 (db_redir_perm):       1
+status 7 (db_duplicate):        7459
+
+
+Stats for ACADIS (Seed 3) Professor's data
+TOTAL urls:        		20387
+retry 0:        		19483
+retry 1:        		845
+retry 2:        		59
+min score:        		0.0
+avg score:        		1.12277434E-4
+max score:        		1.012
+status 1 (db_unfetched):        1785
+status 2 (db_fetched):        	3542
+status 3 (db_gone):        	10705
+status 4 (db_redir_temp):       3674
+status 5 (db_redir_perm):       681
+

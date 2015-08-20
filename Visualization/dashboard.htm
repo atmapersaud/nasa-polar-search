@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CSCI572 HW3</title>
+<style>
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+<!--
+    margin-top:20px;
+-->
+}
+#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:555px;
+    width:10%;
+    float:left;
+<!--
+    padding:5px;	      
+-->
+}
+#section {
+    width:90%;
+    float:left;
+<!--
+    padding:10px;	 	 
+-->
+}
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;	 	 
+}
+</style>
+</head>
+<body>
+
+<div id="header">
+<h2>CSCI572 - Assignment 3 - Visual Search and Interaction with NSF and NASA Polar Datasets</h2>
+</div>
+
+<div id="nav">
+<br><br>
+<h3 onclick="document.getElementById('iframename').src = 'd3/index.html';" align="center" style="cursor: pointer; cursor: hand;">D3.js</h3>
+<h3 onclick="document.getElementById('iframename').src = 'banana/src/index.html';" align="center" style="cursor: pointer; cursor: hand;">Banana</h3>
+<h3 onclick="document.getElementById('iframename').src = 'facetview/index.html';" align="center" style="cursor: pointer; cursor: hand;">FacetView</h3>
+</div>
+
+<div id="section">
+<iframe id="iframename" src="d3/index.html" style="width:100%; height:555px; border:none;" scrolling="yes"></iframe>
+</div>
+
+<div id="footer">
+Copyright &copy; CSCI572 Assignment 3 Visual Search and Interaction with NSF and NASA Polar Datasets
+</div>
+
+</body>
+</html>
+

@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Data Visualization</title>
+
+<meta charset="utf-8">
+
+<style>
+
+.node {
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.link {
+  stroke: #999;
+  stroke-opacity: .6;
+}
+
+</style>
+
+
+
+<style>
+
+text {
+  font: 10px sans-serif;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: orange;
+}
+
+.bar:hover {
+  fill: red;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+
+</style>
+
+
+<style>
+
+.graticule {
+  fill: none;
+  stroke: #777;
+  stroke-width: .5px;
+  stroke-opacity: .5;
+}
+
+.land {
+  fill: #222;
+}
+
+.boundary {
+  fill: none;
+  stroke: #fff;
+  stroke-width: .5px;
+}
+
+</style>
+
+
+
+
+<style>
+
+body {
+  font: 10px sans-serif;
+}
+
+.arc path {
+  stroke: #fff;
+}
+
+</style>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="d3.tip.v0.6.3.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>    
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" />
+
+
+
+<style>
+body {
+    background-image:url("1.jpg");
+}
+
+#line{ color:#ffffff; width:1250px;  margin-top: 20px;}
+
+#que{ margin-left: 20px;color:#FFA500 }
+#enter{ margin-left: -280px; }
+
+#d3{ margin-left: 200px; }
+
+#pie2{ margin-left: 70px; }
+
+#donut2{ margin-left: 170px; }
+
+#map2{ margin-left: 250px; }
+
+#bubble2{ margin-left: 300px; }
+
+#fdg2{ margin-left: 400px; }
+
+
+#div1{margin-left:50px; margin-top:-10px}
+h3{margin-left:40px; }
+#btnsubmit{height:35px; width:100px; background-color:#FFA500;margin-left: 900px;  }
+
+
+
+</style>
+
+
+<script>
+function q() {
+if(document.getElementById("sel1").selectedIndex === 1){
+ document.getElementById("enter").value = "Are there any changes in migratory patterns of animals or birds due to rise in sea level?";}
+   else if(document.getElementById("sel1").selectedIndex === 2){
+ document.getElementById("enter").value = "Have sea ice changes led to new international shipping routes?";}
+ else if(document.getElementById("sel1").selectedIndex === 3){
+ document.getElementById("enter").value = "What oil exploration is happening in polar regions?";}
+ else if(document.getElementById("sel1").selectedIndex === 4){
+ document.getElementById("enter").value = "What military operations are currently being conducted in Antarctica?";}
+ else if(document.getElementById("sel1").selectedIndex === 5){
+ document.getElementById("enter").value = "How many regions of interest are represented by the data you collected?";}
+ else if(document.getElementById("sel1").selectedIndex === 6){
+ document.getElementById("enter").value = "How do scientists monitor the Arctic wildlife?";}
+ else
+ {document.getElementById("enter").value = "";}
+}
+</script>
+
+<script>
+function bar(){
+
+var margin = {top: 40, right: 20, bottom: 30, left: 330},
+    width = 960 - margin.left - margin.right,
+    height = 450 - margin.top - margin.bottom;
+
+var formatPercent = d3.format(".0%");
+
+var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .tickFormat(formatPercent);
+	
+
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return "<strong>Title:</strong> <span style='color:red'>" + d.title + "</span>";
+  })
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.call(tip);
+
+d3.tsv("bar_input.tsv", type, function(error, data) {
+
+  x.domain(data.map(function(d) { return d.id; }));
+  y.domain([0, d3.max(data, function(d) { return d.score; })]);
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Score");
+
+  svg.selectAll(".bar")
+      .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.id); })
+      .attr("width", x.rangeBand())
+      .attr("y", function(d) { return y(d.score); })
+      .attr("height", function(d) { return height - y(d.score); })
+      .on('mouseover', tip.show)
+      .on('mouseout', tip.hide)
+
+});}
+
+function type(d) {
+  d.score = +d.score;
+  return d;
+}
+
+
+</script>
+
+<script>
+
+function pie(){
+
+var width = 1100,
+    height = 500,
+    radius = Math.min(width, height) / 2;
+
+var color = d3.scale.ordinal()
+    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+var arc = d3.svg.arc()
+    .outerRadius(radius - 10)
+    .innerRadius(0);
+
+var pie = d3.layout.pie()
+    .sort(null)
+    .value(function(d) { return d.number_of_documents; });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+  .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+d3.csv("pie_input.csv", function(error, data) {
+
+  data.forEach(function(d) {
+    d.number_of_documents = +d.number_of_documents;
+  });
+
+  var g = svg.selectAll(".arc")
+      .data(pie(data))
+    .enter().append("g")
+      .attr("class", "arc");
+
+  g.append("path")
+      .attr("d", arc)
+      .style("fill", function(d) { return color(d.data.no_of_links); });
+
+  g.append("text")
+      .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+      .attr("dy", ".35em")
+      .style("text-anchor", "middle")
+      .text(function(d) { return d.data.no_of_links; });
+
+});
+
+
+}
+</script>
+
+
+<script>
+function donut(){
+
+var width = 1100,
+    height = 500,
+    radius = Math.min(width, height) / 2;
+
+var color = d3.scale.ordinal()
+    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+var arc = d3.svg.arc()
+    .outerRadius(radius - 10)
+    .innerRadius(radius - 70);
+
+var pie = d3.layout.pie()
+    .sort(null)
+    .value(function(d) { return d.number_of_documents; });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+  .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+d3.csv("donut_input.csv", function(error, data) {
+
+  data.forEach(function(d) {
+    d.number_of_documents = +d.number_of_documents;
+  });
+
+  var g = svg.selectAll(".arc")
+      .data(pie(data))
+    .enter().append("g")
+      .attr("class", "arc");
+
+  g.append("path")
+      .attr("d", arc)
+      .style("fill", function(d) { return color(d.data.no_of_keywords); });
+
+  g.append("text")
+      .attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")"; })
+      .attr("dy", ".35em")
+      .style("text-anchor", "middle")
+      .text(function(d) { return d.data.no_of_keywords; });
+
+});
+
+
+}
+</script>
+
+<script>
+function map(){
+
+var places = [
+  {
+    name: "Wollongong, Australia",
+    location: {
+      latitude: -66,
+      longitude: 8
+    }
+  },
+  {
+    name: "Newcastle, Australia",
+    location: {
+      latitude: -77,
+      longitude: 38
+    }
+  }
+]
+
+var width = 1150,
+    height = 555;
+
+var projection = d3.geo.equirectangular()
+    .scale(153)
+    .translate([width / 2, height / 2])
+    .precision(.1);
+
+var path = d3.geo.path()
+    .projection(projection);
+
+var graticule = d3.geo.graticule();
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+svg.append("path")
+    .datum(graticule)
+    .attr("class", "graticule")
+    .attr("d", path);
+
+d3.json("world-50m.json", function(error, world) {
+  svg.insert("path", ".graticule")
+      .datum(topojson.feature(world, world.objects.land))
+      .attr("class", "land")
+      .attr("d", path);
+
+  svg.insert("path", ".graticule")
+      .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
+      .attr("class", "boundary")
+      .attr("d", path);
+});
+
+d3.csv("worldmap_input.csv",function(error,data){
+  data.forEach(function(d){
+    d.doc=d.doc;
+    d.latitude=+d.latitude;
+    d.longitude=+d.longitude;
+
+  });
+
+
+
+svg.selectAll(".pin")
+  .data(data)
+  .enter().append("circle", ".pin")
+  .attr("r", 5)
+  .attr("fill","red")
+  .attr("transform", function(d) {
+    return "translate(" + projection([
+      d.longitude,
+      d.latitude
+    ]) + ")"
+  });
+
+ 
+
+d3.select(self.frameElement).style("height", height + "px");
+ });
+
+
+}
+
+</script>
+
+<script>
+function fdg(){
+
+var width = 1060,
+    height = 500;
+
+var color = d3.scale.category20();
+
+var force = d3.layout.force()
+    .charge(-120)
+    .linkDistance(30)
+    .size([width, height]);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+d3.json("fdg_input.json", function(error, graph) {
+  force
+      .nodes(graph.nodes)
+      .links(graph.links)
+      .start();
+
+  var link = svg.selectAll(".link")
+      .data(graph.links)
+    .enter().append("line")
+      .attr("class", "link")
+      .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+
+  var node = svg.selectAll(".node")
+      .data(graph.nodes)
+    .enter().append("circle")
+      .attr("class", "node")
+      .attr("r", 5)
+      .style("fill", function(d) { return color(d.group); })
+      .call(force.drag);
+
+  node.append("title")
+      .text(function(d) { return d.name; });
+
+  force.on("tick", function() {
+    link.attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+    node.attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; });
+  });
+});
+}
+</script>
+
+<script>
+function bubble(){
+var diameter = 600,
+    format = d3.format(",d"),
+    color = d3.scale.category20c();
+
+var bubble = d3.layout.pack()
+    .sort(null)
+    .size([diameter, diameter])
+    .padding(1.5);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", diameter)
+    .attr("height", diameter)
+    .attr("class", "bubble");
+
+d3.json("bubble.json", function(error, root) {
+  var node = svg.selectAll(".node")
+      .data(bubble.nodes(classes(root))
+      .filter(function(d) { return !d.children; }))
+    .enter().append("g")
+      .attr("class", "node")
+      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+  node.append("title")
+      .text(function(d) { return d.className + ": " + format(d.value); });
+
+  node.append("circle")
+      .attr("r", function(d) { return d.r; })
+      .style("fill", function(d) { return color(d.packageName); });
+
+  node.append("text")
+      .attr("dy", ".3em")
+      .style("text-anchor", "middle")
+      .text(function(d) { return d.className.substring(0, d.r / 3); });
+});
+
+// Returns a flattened hierarchy containing all leaf nodes under the root.
+function classes(root) {
+  var classes = [];
+
+  function recurse(name, node) {
+    if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
+    else classes.push({packageName: name, className: node.name, value: node.size});
+  }
+
+  recurse(null, root);
+  return {children: classes};
+}
+
+d3.select(self.frameElement).style("height", diameter + "px");
+}
+
+
+</script>
+
+
+
+<script>
+
+$(document).ready(
+function()
+{
+
+
+	$('#btnsubmit').click
+	(function()
+	{
+
+	
+	$.ajax
+	(	
+		{
+		        type:"GET",			
+			/*dataType:'json',*/
+url: 'http://localhost:9000/?query='+encodeURIComponent($('#enter').val())+'&d3='+$("input[type=radio]:checked").val(),
+			
+			
+			success:function (data)
+			{  
+				if($("input[type=radio]:checked").val() == 'bar')			
+				{ bar();}
+				
+				else if($("input[type=radio]:checked").val() == 'pie')			
+				{ pie();}
+				
+				else if($("input[type=radio]:checked").val() == 'donut')			
+				{ donut();}
+
+				else if($("input[type=radio]:checked").val() == 'worldmap')			
+				{ map();}
+
+				else if($("input[type=radio]:checked").val() == 'bubble')			
+				{ bubble();}
+				
+				else if($("input[type=radio]:checked").val() == 'fdg')			
+				{ fdg();}
+				return;
+		
+				
+			
+			},
+			
+			error:function(){alert("error");}
+			
+	});
+	return false;
+	});
+});
+</script>
+
+
+
+
+
+</head>
+<body style='overflow-x:hidden'>
+
+<h3 style="color:#FFA500"><b>Data Visualization using D3</h3><br>
+<div id="div1" style="color:#FFA500">
+<form id="myform" method="GET" class="form-inline" action="" onsubmit="return false">
+
+<div class="form-group" style="display:inline">
+     
+    <input id="enter" name="enter"style ='height:32px' size = 70 type="text" placeholder="Enter a Query" class="form-control" name="query" style="display:inline"/>    
+
+    <label style='color:red' style="display:inline;" id="que"><h4>Select a Query:</h4></label>	
+    <select name="d3" id="sel1" class="form-control" onchange="q();">
+    <option value=""></option>
+        <option value="query1">Q 1</option>
+        <option value="query2">Q 2</option>
+        <option value="query3">Q 3</option>
+        <option value="query4">Q 4</option>
+        <option value="query5">Q 5</option>
+        <option value="query6">Q 6</option>
+	</select>
+
+
+<div class="form-group col-xs-3" id="sub">
+    <button type = "submit" id="btnsubmit" class="btn btn-success" value="Submit">Submit</button>
+</div>
+
+</div>
+ </div>
+
+<hr id="line">
+
+ <div class="radio-inline no_indent" id="d3">
+<label class="radio-inline no_indent" ><input type="radio" name="bar" id="bar" value="bar">Bar Chart</label></div>
+ <div class="radio-inline no_indent">
+<label class="radio-inline no_indent"><input type="radio" name="bar" id="pie" value="pie">Pie Chart</label></div>
+<div class="radio-inline no_indent">
+<label class="radio-inline no_indent" ><input type="radio" name="bar" id="donut" value="donut">Donut</label></div>
+<div class="radio-inline no_indent">
+<label class="radio-inline no_indent" ><input type="radio" name="bar" id="bubble" value="bubble">Bubble Chart</label></div>
+<div class="radio-inline no_indent">
+<label class="radio-inline no_indent" ><input type="radio" name="bar" id="fdg" value="fdg">Force Directed Graph</label></div>
+<div class="radio-inline no_indent">
+<label class="radio-inline no_indent" ><input type="radio" name="bar" id="worldmap"  value="worldmap">Map</label></div>
+
+ </form>
+
+
+
+</body>
+</html>

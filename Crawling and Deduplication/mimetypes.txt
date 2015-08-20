@@ -1,0 +1,29 @@
+1. text/html
+
+2. application/pdf
+
+3. video/mp4
+
+4. application/vnd.google-earth.kmz
+
+5. image/jpeg
+
+6. text/plain
+
+7. application/mdword
+
+8. application/xml
+
+9. application/gzip
+
+10. text/csv
+
+11. application/javascript
+
+12. application/vnd.ms-excel
+
+13. application/vnd.ms-powerpoint
+
+14. application/rdf+xml
+
+15. application/rss+xml

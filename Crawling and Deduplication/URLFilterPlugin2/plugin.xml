@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="myplugin" name="URLFilter plugin"
+    version="0.0.1" provider-name="nutch.org">
+
+   <runtime>
+     <library name="myplugin.jar">
+       <export name="*"/>
+     </library>
+   </runtime>
+
+   <extension id="org.apache.nutch.net.urlfilter.duplicates"
+       name="Duplicate URL Filter"
+       point="org.apache.nutch.net.URLFilter">
+     <implementation id="URLFilter2"
+         class="org.apache.nutch.urlfilter.duplicates.URLFilter2"/>
+   </extension>
+</plugin>
