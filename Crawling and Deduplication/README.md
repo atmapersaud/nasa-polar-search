@@ -1,7 +1,9 @@
 Data from the following 3 seeds was crawled using Apache Nutch:
 
 1. [NASA AMD] (http://gcmd.gsfc.nasa.gov/KeywordSearch/Home.do?Portal=amd&MetadataType=0)
+
 2. [NSIDC ADE] (http://nsidc.org/acadis/search/)
+
 3. [NSF ACADIS] (https://www.aoncadis.org/home.htm)
 
 * The configuration files for this crawl as well as rules for URL filtering, can be found in the config and URLFilterPlugin directories.
