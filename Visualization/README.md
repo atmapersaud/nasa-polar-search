@@ -1,4 +1,4 @@
-#### Technologies used:
+##### Technologies used:
 Front end: D3.js, Bootstrap, Banana, Facetview
 Back end: Python server
 
